@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Pizza Delivery</string>
+    <string name="username">Username</string>
+    <string name="reg">Register</string>
+    <string name="name">Name</string>
+    <string name="pass">Password</string>
+    <string name="phone_number">Phone number</string>
+    <string name="sign_up">sign up</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="register">Register</string>
+    <string name="pizza_delivery">Pizza Delivery</string>
+    <string name="forgot_password">Forgot password ?</string>
+</resources>
