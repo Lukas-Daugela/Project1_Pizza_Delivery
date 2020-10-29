@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainActivity">
+
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.example2.Register"
+        android:label="register"
+        tools:layout="@layout/register" >
+        <action
+            android:id="@+id/action_register_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+
+
+        <fragment
+            android:id="@+id/mainActivity"
+            android:name="com.example.example2.MainActivity"
+            android:label="activity_main"
+            tools:layout="@layout/activity_main" >
+            <action
+                android:id="@+id/action_mainActivity_to_register"
+                app:destination="@id/register" />
+            <action
+                android:id="@+id/action_mainActivity_to_pizzaPlaces3"
+                app:destination="@id/pizzaPlaces" />
+        </fragment>
+
+    <fragment
+        android:id="@+id/pizzaPlaces"
+        android:name="com.example.example2.PizzaPlaces"
+        android:label="pizza_places"
+        tools:layout="@layout/pizza_places" >
+        <action
+            android:id="@+id/action_pizzaPlaces3_to_pizzaMeniu2"
+            app:destination="@id/pizzaMeniu" />
+    </fragment>
+    <fragment
+        android:id="@+id/pizzaMeniu"
+        android:name="com.example.example2.PizzaMeniu"
+        android:label="pizza_meniu"
+        tools:layout="@layout/pizza_meniu" >
+        <action
+            android:id="@+id/action_pizzaMeniu2_to_pizzaDescription3"
+            app:destination="@id/pizzaDescription" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderPizza"
+        android:name="com.example.example2.OrderPizza"
+        android:label="order_pizza"
+        tools:layout="@layout/order_pizza" />
+    <fragment
+        android:id="@+id/pizzaDescription"
+        android:name="com.example.example2.PizzaDescription"
+        android:label="pizza_description"
+        tools:layout="@layout/pizza_description" >
+        <action
+            android:id="@+id/action_pizzaDescription3_to_orderPizza3"
+            app:destination="@id/orderPizza" />
+    </fragment>
+
+
+</navigation>
