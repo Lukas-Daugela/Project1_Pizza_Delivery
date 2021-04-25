@@ -1,4 +1,4 @@
-package com.example.example2;
+package com.example.PizzaApp;
 
 import android.graphics.Bitmap;
 

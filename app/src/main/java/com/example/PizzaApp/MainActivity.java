@@ -1,4 +1,4 @@
-package com.example.example2;
+package com.example.PizzaApp;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,17 +11,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.example2.R;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String url = "jdbc:mysql://192.168.8.115/pizzaappdatabase";
-    private static final String user = "Pizza";
-    private static final String pass = "pica";
+    private String username;
+    static String name;
+    static int phoneNumber;
 
     Button btnLogin;
     EditText loginUsername, loginPassword;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnLogin = findViewById(R.id.logInBtn);
-        loginUsername = findViewById(R.id.loginUsernameEditText);
+        loginUsername = findViewById(R.id.addressEditText);
         loginPassword = findViewById(R.id.loginPasswordEditText);
         registerTextView = (TextView)findViewById(R.id.registerTextView);
 
@@ -51,16 +52,27 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                username = loginUsername.getText().toString();
                 LoginMySql login = new LoginMySql();
                 login.execute();
             }
         });
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     private class LoginMySql extends AsyncTask<String, Void, String> {
 
-        String username = loginUsername.getText().toString();
         String password = loginPassword.getText().toString();
         String res = "";
 
@@ -72,10 +84,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection(url, user, pass);
+                Connection con = ConnectMySql.connect();
 
-                String result = "";
+                String customerResult = "";
+                String courierResult = "";
 
                 ResultSet check;
                 PreparedStatement ps1 = con.prepareStatement("SELECT COUNT(*) FROM customers WHERE username = (?) AND password = (?);");
@@ -85,17 +97,48 @@ public class MainActivity extends AppCompatActivity {
                 check = ps1.executeQuery();
 
                 while (check.next()) {
-                    result += check.getString(1).toString();
+                    customerResult += check.getString(1).toString();
                 }
 
-                int rezultatas = Integer.parseInt(result.trim());
+                int rezultatas = Integer.parseInt(customerResult.trim());
 
                 if (rezultatas == 0) {
-                    result = "Wrong username or password";
-                    res = result;
+                    ResultSet checkForCourier;
+                    PreparedStatement ps2 = con.prepareStatement("SELECT COUNT(*) FROM courier WHERE userName = (?) AND password = (?);");
+                    ps2.setString(1, username);
+                    ps2.setString(2, password);
+
+                    checkForCourier = ps2.executeQuery();
+
+                    while (checkForCourier.next()) {
+                        courierResult += checkForCourier.getString(1).toString();
+                    }
+                    int rezultas = Integer.parseInt((courierResult.trim()));
+
+                    if (rezultas == 0) {
+                        courierResult = "Wrong username or password";
+                        res = courierResult;
+                }else if(rezultas == 1){
+                        courierResult = "Courier login successful";
+                        res = courierResult;
+                    }
                 } else{
-                    result = "Login successful";
-                    res = result;
+                        customerResult = "Login successful";
+                    res = customerResult;
+                }
+
+                if(res.equals("Login successful")) {
+                    ResultSet getInfo;
+                    PreparedStatement ps2 = con.prepareStatement("SELECT name, phoneNumber FROM customers WHERE username = (?)");
+                    ps2.setString(1, username);
+
+                    getInfo = ps2.executeQuery();
+                    while(getInfo.next()){
+
+                        name = getInfo.getString(1);
+                        phoneNumber = getInfo.getInt(2);
+
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -108,8 +151,13 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show();
 
             if(result.equals("Login successful")) {
-                Intent startLogin = new Intent(getApplicationContext(), PizzaPlaces.class);
+                Intent startLogin = new Intent(getApplicationContext(), CityForOrder.class);
                 startActivity(startLogin);
+            }
+
+            if(result.equals("Courier login successful")) {
+                Intent startCourierLogin = new Intent(getApplicationContext(), infoForCourier.class);
+                startActivity(startCourierLogin);
             }
         }
     }

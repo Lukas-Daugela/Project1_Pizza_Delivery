@@ -1,4 +1,4 @@
-package com.example.example2;
+package com.example.PizzaApp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,10 +17,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.example2.R;
+
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
-
-import static com.example.example2.PizzaList.pizzas;
 
 public class PizzaMeniu extends AppCompatActivity {
 
@@ -43,14 +43,12 @@ public class PizzaMeniu extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-
-        PizzaListAdapter adapter = new PizzaListAdapter(this, R.layout.pizza_meniu_row, pizzas);
+        PizzaListAdapter adapter = new PizzaListAdapter(this, R.layout.pizza_meniu_row, PizzaList.pizzas);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Intent intent = new Intent(getApplicationContext(), PizzaDescription.class);
                 intent.putExtra("key", position);
                 startActivity(intent);
@@ -84,10 +82,10 @@ public class PizzaMeniu extends AppCompatActivity {
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(mResource, parent, false);
 
-            TextView pizzaName = (TextView) convertView.findViewById(R.id.textView1);
-            TextView pizzaDesc = (TextView) convertView.findViewById(R.id.textView2);
-            ImageView images = (ImageView) convertView.findViewById(R.id.image);
-            TextView prices = (TextView) convertView.findViewById(R.id.textViewKaina);
+            TextView pizzaName = convertView.findViewById(R.id.textView1);
+            TextView pizzaDesc = convertView.findViewById(R.id.textView2);
+            ImageView images = convertView.findViewById(R.id.image);
+            TextView prices = convertView.findViewById(R.id.textViewKaina);
 
             pizzaName.setText(name);
             pizzaDesc.setText(sDesc);

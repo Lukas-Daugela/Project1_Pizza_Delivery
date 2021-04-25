@@ -1,18 +1,17 @@
-package com.example.example2;
+package com.example.PizzaApp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static com.example.example2.OrderPizza.orders;
-import static com.example.example2.OrderPizza.prices;
-import static com.example.example2.PizzaList.pizzas;
+import com.example.example2.R;
+
+import java.util.ArrayList;
 
 public class PizzaDescription extends AppCompatActivity {
 
@@ -20,6 +19,7 @@ public class PizzaDescription extends AppCompatActivity {
     ImageView image;
     Button addPizzaPrice, finishOrder;
     int position;
+    public ArrayList<String> pizzaList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,10 @@ public class PizzaDescription extends AppCompatActivity {
         image = findViewById(R.id.imageViewD);
         totalPrice = findViewById(R.id.textViewPrice);
 
-        pizzaName.setText(pizzas.get(position).getPizzaName());
-        longDesc.setText(pizzas.get(position).getLongDesc());
-        price.setText(pizzas.get(position).getPrice());
-        image.setImageBitmap(pizzas.get(position).getImage());
+        pizzaName.setText(PizzaList.pizzas.get(position).getPizzaName());
+        longDesc.setText(PizzaList.pizzas.get(position).getLongDesc());
+        price.setText(PizzaList.pizzas.get(position).getPrice());
+        image.setImageBitmap(PizzaList.pizzas.get(position).getImage());
 
         totalPrice.setText("0");
 
@@ -58,8 +58,9 @@ public class PizzaDescription extends AppCompatActivity {
                 double priceNow = Double.parseDouble(totalPrice.getText().toString());
 
                 Orders order = new Orders(pizzaName.getText().toString(), onePizzaPriceStr);
-                orders.add(order);
-                prices.add(onePizzaPriceStr);
+                OrderPizza.orders.add(order);
+                OrderPizza.prices.add(onePizzaPriceStr);
+                OrderPizza.pizzaLst.add(pizzaName.getText().toString());
 
                 if (defaultPrice.equals("0")) {
                     totalPrice.setText(onePizzaPriceStr);
@@ -81,5 +82,7 @@ public class PizzaDescription extends AppCompatActivity {
 
     }
 
-
+    public ArrayList<String> getPizzaList() {
+        return pizzaList;
+    }
 }

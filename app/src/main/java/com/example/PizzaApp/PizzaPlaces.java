@@ -1,4 +1,4 @@
-package com.example.example2;
+package com.example.PizzaApp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,14 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.example2.R;
 
 public class PizzaPlaces extends AppCompatActivity {
 
     ListView listView;
-    String name[] = {"American pizza", "Express pizza", "Fresco pizza", "Chilli pizza", "Charlie pizza"};
+    // more pizza restaurants in comments for future development
+    String name[] = {"American pizza"/*, "Express pizza", "Fresco pizza", "Chilli pizza", "Charlie pizza"*/};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

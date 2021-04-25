@@ -1,9 +1,13 @@
-package com.example.example2;
+package com.example.PizzaApp;
 
 public class Orders {
 
     private String pizzaName;
     private String price;
+
+    public Orders(String pizzaName) {
+        this.pizzaName = pizzaName;
+    }
 
     public Orders(String pizzaName, String price) {
         this.pizzaName = pizzaName;

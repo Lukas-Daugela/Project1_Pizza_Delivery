@@ -1,4 +1,4 @@
-package com.example.example2;
+package com.example.PizzaApp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,20 +11,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.example2.R;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import static com.example.PizzaApp.ConnectMySql.connect;
+
 public class Register extends AppCompatActivity {
 
-    EditText registerName, registerUsername, registerPasswor, registerPhoneNumber;
+    EditText registerName, registerUsername, registerPassword, registerPhoneNumber;
     Button signUp;
     TextView toLogin;
-
-    private static final String url = "jdbc:mysql://192.168.8.115/pizzaappdatabase";
-    private static final String user = "Pizza";
-    private static final String pass = "pica";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,7 @@ public class Register extends AppCompatActivity {
 
         registerName = findViewById(R.id.registerNameEditText);
         registerUsername = findViewById(R.id.registerUsernameEditText);
-        registerPasswor = findViewById(R.id.registerPasswordEditText);
+        registerPassword = findViewById(R.id.registerPasswordEditText);
         registerPhoneNumber = findViewById(R.id.registerPhoneNumberEditText);
 
         signUp = findViewById(R.id.signUpBtn);
@@ -61,7 +60,7 @@ public class Register extends AppCompatActivity {
 
         String name = registerName.getText().toString();
         String username = registerUsername.getText().toString();
-        String password = registerPasswor.getText().toString();
+        String password = registerPassword.getText().toString();
         String phoneNum = registerPhoneNumber.getText().toString();
         String res = "";
 
@@ -73,13 +72,11 @@ public class Register extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection(url, user, pass);
+                Connection con = connect();
 
                 String result = "";
-
                 ResultSet check;
-                int registr = 0;
+                int register = 0;
                 PreparedStatement ps1 = con.prepareStatement("SELECT COUNT(*) FROM customers WHERE username = (?);");
                 ps1.setString(1, username);
 
@@ -104,7 +101,7 @@ public class Register extends AppCompatActivity {
                     ps.setString(2, username);
                     ps.setString(3, password);
                     ps.setString(4, phoneNum);
-                    registr = ps.executeUpdate();
+                    register = ps.executeUpdate();
                     result = "Registration successful";
                     res = result;
                 }else{

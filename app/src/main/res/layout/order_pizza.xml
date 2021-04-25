@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context="com.example.example2.OrderPizza"
+    tools:context="com.example.example2.com.example.PizzaApp.OrderPizza"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,22 +24,34 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/amiri_bold_italic"
-
         android:gravity="center"
-        android:text="Check"
+        android:text="Price sum"
         android:textColor="#FFFFFF"
         android:textSize="25dp" />
 
+    <EditText
+        android:id="@+id/addressEditText"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:hint="Enter your address"
+        android:textColorHint="#FFFBF8"
+        android:paddingLeft="15dp"
+        android:textColor="#FFFBF8"
+        android:background="@drawable/btn"
+        android:importantForAutofill="no"
+        android:layout_gravity="center"
+        android:paddingStart="55dp"
+        tools:ignore="RtlSymmetry" />
+
     <Button
         android:id="@+id/btnGetPizzas"
-
         android:text="Get pizzas"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-
-
         android:layout_width="149dp"
         android:layout_height="55dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/buttonshape"
         android:fontFamily="@font/amiri_bold_italic"
         android:shadowColor="#86A800"
@@ -53,8 +65,8 @@
     <ListView
         android:id="@+id/listViewCheck"
         android:layout_width="match_parent"
-        android:layout_height="307dp"
-        android:layout_marginTop="70dp" />
+        android:layout_height="301dp"
+        android:layout_marginTop="10dp" />
 
 
 </LinearLayout>

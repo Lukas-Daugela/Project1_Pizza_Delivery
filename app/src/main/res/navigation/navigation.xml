@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/register"
-        android:name="com.example.example2.Register"
+        android:name="com.example.PizzaApp.Register"
         android:label="register"
         tools:layout="@layout/register" >
         <action
@@ -18,7 +18,7 @@
 
         <fragment
             android:id="@+id/mainActivity"
-            android:name="com.example.example2.MainActivity"
+            android:name="com.example.PizzaApp.MainActivity"
             android:label="activity_main"
             tools:layout="@layout/activity_main" >
             <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/pizzaPlaces"
-        android:name="com.example.example2.PizzaPlaces"
+        android:name="com.example.PizzaApp.PizzaPlaces"
         android:label="pizza_places"
         tools:layout="@layout/pizza_places" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/pizzaMeniu"
-        android:name="com.example.example2.PizzaMeniu"
+        android:name="com.example.PizzaApp.PizzaMeniu"
         android:label="pizza_meniu"
         tools:layout="@layout/pizza_meniu" >
         <action
@@ -49,12 +49,12 @@
     </fragment>
     <fragment
         android:id="@+id/orderPizza"
-        android:name="com.example.example2.OrderPizza"
+        android:name="com.example.PizzaApp.OrderPizza"
         android:label="order_pizza"
         tools:layout="@layout/order_pizza" />
     <fragment
         android:id="@+id/pizzaDescription"
-        android:name="com.example.example2.PizzaDescription"
+        android:name="com.example.PizzaApp.PizzaDescription"
         android:label="pizza_description"
         tools:layout="@layout/pizza_description" >
         <action

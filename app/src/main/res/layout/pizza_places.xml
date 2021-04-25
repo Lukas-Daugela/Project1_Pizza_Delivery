@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.example2.PizzaPlaces"
+    tools:context="com.example.example2.com.example.PizzaApp.PizzaPlaces"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -24,13 +24,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="389dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="150dp"
         android:background="#3fff">
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="389dp"
+            android:layout_height="match_parent"
             android:fontFamily="@font/amiri_bold_italic" />
 
     </LinearLayout>

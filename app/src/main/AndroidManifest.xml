@@ -11,13 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StillNotFinished"></activity>
-        <activity android:name=".OrderPizza" />
-        <activity android:name=".PizzaDescription" />
-        <activity android:name=".PizzaMeniu" />
-        <activity android:name=".PizzaPlaces" />
-        <activity android:name=".Register" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.PizzaApp.infoForCourier"></activity>
+        <activity android:name="com.example.PizzaApp.CityForOrder" />
+        <activity android:name="com.example.PizzaApp.OrderFinish" />
+        <activity android:name="com.example.PizzaApp.OrderPizza" />
+        <activity android:name="com.example.PizzaApp.PizzaDescription" />
+        <activity android:name="com.example.PizzaApp.PizzaMeniu" />
+        <activity android:name="com.example.PizzaApp.PizzaPlaces" />
+        <activity android:name="com.example.PizzaApp.Register" />
+        <activity android:name="com.example.PizzaApp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
